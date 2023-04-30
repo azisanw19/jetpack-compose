@@ -7,10 +7,19 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +30,8 @@ class MainActivity : ComponentActivity() {
 //            MessageCardColumn(msg = Message("Aziz Anwar", "Jetpack Compose"))
 //            MessageCardRow(msg = Message("Aziz Anwar", "Jetpack Compose"))
 //            MessageCardBox(msg = Message("Aziz Anwar", "Jetpack Compose"))
-            MessageCardImage(msg = Message("Natsume Mio", "Just Because"))
+//            MessageCardImage(msg = Message("Natsume Mio", "Just Because"))
+            MessageCardConfigurationLayout(msg = Message("Natsume Mio", "Just Because"))
         }
     }
 }
@@ -84,9 +94,35 @@ fun MessageCardImage(msg: Message) {
             painter = painterResource(id = R.drawable.image_photo_profile_natsume_mio),
             contentDescription = "Natsume Mio Photo Profile"
         )
-        
         Column {
             Text(text = msg.author)
+            Text(text = msg.body)
+        }
+    }
+}
+
+// Konfigurasi tata letak menggunakan modifier
+@Composable
+fun MessageCardConfigurationLayout(msg: Message) {
+    // Menambahkan Padding di message
+    Row(modifier = Modifier.padding(all = 8.dp)) {
+        Image(
+            painter = painterResource(id = R.drawable.image_photo_profile_natsume_mio),
+            contentDescription = "Natsume Mio Photo Profile",
+            modifier = Modifier
+                // set image size 40 dp
+                .size(40.dp)
+                // set clip image circle
+                .clip(CircleShape)
+        )
+
+        // add horizontal space
+        Spacer(modifier = Modifier.width(8.dp))
+
+        Column {
+            Text(text = msg.author)
+            // add vertical space
+            Spacer(modifier = Modifier.height(4.dp))
             Text(text = msg.body)
         }
     }
