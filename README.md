@@ -12,3 +12,4 @@
    - Bersifat hierarkis, dengan eleman satu berada dalam elemen lainnya
    - Membuild ui dengan fungsi compose
    - Column mengatur elemen secara vertikal
+   - Row mengatur elemen secara horizontal
