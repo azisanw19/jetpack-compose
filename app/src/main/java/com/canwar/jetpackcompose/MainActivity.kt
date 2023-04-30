@@ -1,5 +1,6 @@
 package com.canwar.jetpackcompose
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -56,7 +57,12 @@ fun MessageCard(name: String) {
 
 // Anotasi preview digunakan untuk melihat pratinjau
 // Anotasi preview hanya dapat digunakan pada fungsi composable yang tidak menggunakan parameter
-@Preview
+@Preview(name = "Light Mode")
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    name = "Dark Mode"
+)
 @Composable
 fun PreviewMessageCard() {
     JetpackComposeTheme {

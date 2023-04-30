@@ -22,3 +22,4 @@
    - Android compose mendukung material desain
    - Menggunakan Material Desain untuk style dan warna
    - Shape digunakan untuk menambahkan bentuk
+   - Preview dengan mode gelap
