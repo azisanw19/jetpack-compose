@@ -11,9 +11,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MessageCard(name = "Aziz Anwar")
+//            MessageCard(name = "Aziz Anwar")
+            MessageCardHierarkis(msg = Message("Aziz Anwar", "Jetpack Compose"))
         }
     }
+}
+
+data class Message(val author: String, val body: String)
+
+// 2 Elemen teks tetapi informasi mengaturnya belum disedikan sehingga saling bertumpuk
+@Composable
+fun MessageCardHierarkis(msg: Message) {
+    Text(text = msg.author)
+    Text(text = msg.body)
 }
 
 // Fungsi dengan anotasi Composable hanya dapat dipanggil dari fungsi compose lain
