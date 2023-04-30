@@ -20,3 +20,4 @@
 
 3. Desain Material
    - Android compose mendukung material desain
+   - Menggunakan Material Desain untuk style dan warna
