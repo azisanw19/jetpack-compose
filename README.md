@@ -27,4 +27,6 @@
 4. Daftar dan animasi
    - items digunakan untuk membuat list pada android compose
    - lazyColumn atau lazyRow hanya dirender ketika elemen terlihat di layar
-   - 
+   - remember digunakan menyimpan status lokal dalam memori 
+   - mutableStateOf digunakan untuk memantau perubahan pada nilai
+   - Dengan menggunakan remember dan mutableStateOf perubahan apapun pada status akan otomatis memperbarui UI
