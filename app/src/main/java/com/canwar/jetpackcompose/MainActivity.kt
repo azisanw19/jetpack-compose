@@ -141,15 +141,21 @@ fun MessageCardConfigurationLayout(msg: Message) {
                 // add color
                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                 // add style
-                style = MaterialTheme.typography.labelMedium
+                style = MaterialTheme.typography.headlineMedium
             )
             // add vertical space
             Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = msg.body,
-                // add style
-                style = MaterialTheme.typography.bodyMedium
-            )
+
+            // menambahkan shape
+            Surface(shape = MaterialTheme.shapes.medium, shadowElevation = 1.dp) {
+                Text(
+                    text = msg.body,
+                    // add padding
+                    modifier = Modifier.padding(all = 4.dp),
+                    // add style
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
     }
 }
