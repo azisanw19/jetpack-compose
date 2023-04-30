@@ -17,3 +17,6 @@
    - Menambahkan elemen gambar
    - Modifier digunakan untuk konfigurasi tata letak dapat digunakan untuk konfigurasi ukuran, tata letak, tampilan atau interaksi elemen tingkat lebih tinggi seperti membuat elemen menjadi dapat diklik
    - Spacer digunakan untuk menambahkan space kosong
+
+3. Desain Material
+   - Android compose mendukung material desain
