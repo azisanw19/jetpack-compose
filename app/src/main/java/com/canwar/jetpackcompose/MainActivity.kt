@@ -3,6 +3,7 @@ package com.canwar.jetpackcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
@@ -16,7 +17,8 @@ class MainActivity : ComponentActivity() {
 //            MessageCard(name = "Aziz Anwar")
 //            MessageCardHierarkis(msg = Message("Aziz Anwar", "Jetpack Compose"))
 //            MessageCardColumn(msg = Message("Aziz Anwar", "Jetpack Compose"))
-            MessageCardRow(msg = Message("Aziz Anwar", "Jetpack Compose"))
+//            MessageCardRow(msg = Message("Aziz Anwar", "Jetpack Compose"))
+            MessageCardBox(msg = Message("Aziz Anwar", "Jetpack Compose"))
         }
     }
 }
@@ -57,6 +59,15 @@ fun MessageCardColumn(msg: Message) {
 @Composable
 fun MessageCardRow(msg: Message) {
     Row {
+        Text(text = msg.author)
+        Text(text = msg.body)
+    }
+}
+
+// Box untuk menumpuk elemen
+@Composable
+fun MessageCardBox(msg: Message) {
+    Box {
         Text(text = msg.author)
         Text(text = msg.body)
     }
