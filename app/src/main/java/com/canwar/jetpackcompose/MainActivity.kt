@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -25,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.canwar.jetpackcompose.data.SampleData
 import com.canwar.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +43,8 @@ class MainActivity : ComponentActivity() {
 //                    MessageCardRow(msg = Message("Aziz Anwar", "Jetpack Compose"))
 //                    MessageCardBox(msg = Message("Aziz Anwar", "Jetpack Compose"))
 //                    MessageCardImage(msg = Message("Natsume Mio", "Just Because"))
-                    MessageCardConfigurationLayout(msg = Message("Natsume Mio", "Just Because"))
+//                    MessageCardConfigurationLayout(msg = Message("Natsume Mio", "Just Because"))
+                    Conversation(messages = SampleData.conversationSample)
                 }
             }
         }
@@ -162,6 +166,17 @@ fun MessageCardConfigurationLayout(msg: Message) {
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
+        }
+    }
+}
+
+// Membuat list android compose
+@Composable
+fun Conversation(messages: List<Message>) {
+    // lazy hanya dibuat jika item dibutuhkan atau dipanggil
+    LazyColumn {
+        items(messages) {message ->
+            MessageCardConfigurationLayout(msg = message)
         }
     }
 }

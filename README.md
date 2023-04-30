@@ -23,3 +23,8 @@
    - Menggunakan Material Desain untuk style dan warna
    - Shape digunakan untuk menambahkan bentuk
    - Preview dengan mode gelap
+
+4. Daftar dan animasi
+   - items digunakan untuk membuat list pada android compose
+   - lazyColumn atau lazyRow hanya dirender ketika elemen terlihat di layar
+   - 
