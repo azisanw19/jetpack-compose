@@ -4,3 +4,5 @@
 
 1. Composable function
     - Add Text Element
+    - Fungsi composable hanya dapat dipanggil dari fungsi composable lain
+    - 
