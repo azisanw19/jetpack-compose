@@ -3,11 +3,13 @@ package com.canwar.jetpackcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +20,8 @@ class MainActivity : ComponentActivity() {
 //            MessageCardHierarkis(msg = Message("Aziz Anwar", "Jetpack Compose"))
 //            MessageCardColumn(msg = Message("Aziz Anwar", "Jetpack Compose"))
 //            MessageCardRow(msg = Message("Aziz Anwar", "Jetpack Compose"))
-            MessageCardBox(msg = Message("Aziz Anwar", "Jetpack Compose"))
+//            MessageCardBox(msg = Message("Aziz Anwar", "Jetpack Compose"))
+            MessageCardImage(msg = Message("Natsume Mio", "Just Because"))
         }
     }
 }
@@ -70,5 +73,21 @@ fun MessageCardBox(msg: Message) {
     Box {
         Text(text = msg.author)
         Text(text = msg.body)
+    }
+}
+
+// Menambahkan elemen gambar
+@Composable
+fun MessageCardImage(msg: Message) {
+    Row {
+        Image(
+            painter = painterResource(id = R.drawable.image_photo_profile_natsume_mio),
+            contentDescription = "Natsume Mio Photo Profile"
+        )
+        
+        Column {
+            Text(text = msg.author)
+            Text(text = msg.body)
+        }
     }
 }

@@ -14,3 +14,4 @@
    - Column mengatur elemen secara vertikal
    - Row mengatur elemen secara horizontal
    - Box untuk menumpuk elemen
+   - Menambahkan elemen gambar
