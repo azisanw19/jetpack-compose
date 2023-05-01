@@ -11,30 +11,41 @@
 2. Tata Letak
    - Bersifat hierarkis, dengan eleman satu berada dalam elemen lainnya
    - Membuild ui dengan fungsi compose
-   - Column mengatur elemen secara vertikal
-   - Row mengatur elemen secara horizontal
-   - Box untuk menumpuk elemen
+   - `Column` mengatur elemen secara vertikal
+   - `Row` mengatur elemen secara horizontal
+   - `Box` untuk menumpuk elemen
    - Menambahkan elemen gambar
-   - Modifier digunakan untuk konfigurasi tata letak dapat digunakan untuk konfigurasi ukuran, tata letak, tampilan atau interaksi elemen tingkat lebih tinggi seperti membuat elemen menjadi dapat diklik
-   - Spacer digunakan untuk menambahkan space kosong
+   - `Modifier` digunakan untuk konfigurasi tata letak dapat digunakan untuk konfigurasi ukuran, tata letak, tampilan atau interaksi elemen tingkat lebih tinggi seperti membuat elemen menjadi dapat diklik
+   - `Spacer` digunakan untuk menambahkan space kosong
 
 3. Desain Material
    - Android compose mendukung material desain
    - Menggunakan Material Desain untuk style dan warna
-   - Shape digunakan untuk menambahkan bentuk
-   - Preview dengan mode gelap
+   - `Shape` digunakan untuk menambahkan bentuk
+   - `Preview` dengan mode gelap
 
 4. Daftar dan animasi
-   - items digunakan untuk membuat list pada android compose
-   - lazyColumn atau lazyRow hanya dirender ketika elemen terlihat di layar
-   - remember digunakan menyimpan status lokal dalam memori 
-   - mutableStateOf digunakan untuk memantau perubahan pada nilai
-   - Dengan menggunakan remember dan mutableStateOf perubahan apapun pada status akan otomatis memperbarui UI
-   - animateColorAsState digunakan untuk mengubah color dan animate
-   - animateContentSize digunakan untuk mengubah ukuran content dan animate
+   - `items` digunakan untuk membuat list pada android compose
+   - `lazyColumn` atau `lazyRow` hanya dirender ketika elemen terlihat di layar
+   - `remember` digunakan menyimpan status lokal dalam memori 
+   - `mutableStateOf` digunakan untuk memantau perubahan pada nilai
+   - Dengan menggunakan `remember` dan `mutableStateOf` perubahan apapun pada status akan otomatis memperbarui UI
+   - `animateColorAsState` digunakan untuk mengubah color dan animate
+   - `animateContentSize` digunakan untuk mengubah ukuran content dan animate
 
 ## Dasar-dasar Jetpack Compose
 
 1. Menyesuaikan UI   
 2. Menggunakan kembali composable menghindari duplikasi code
 3. Membuat baris dan kolom
+4. State compose
+   - Compose mengubah data menjadi UI dengan memanggil fungsi composable
+   - Jika data berubah compose akan menjalankan ulang fungsi composable dengan data baru, hal ini disebut rekomposisi
+   - Compose hanya melihat data apa yang diperlukan oleh setiap composable sehingga hanya perlu merekomposisi komopnene yang data nya berubah
+   - Fungsi composable dapat sering dijalankan dan dalam urutan apa pun
+   - Composable tidak bergantung urutan eksekusi kode atau frekuensi fungsi composable akan direkomposisi
+   - `mutableStateOf` dapat membuat compose merekomposisi fungsi yang membaca state
+   - State dan mutableState adalah antarmuka yang menyimpan beberapa nilai dan memicu update UI (rekomposisi) setiap nilai tersebut berubah
+   - Rekomposisi dapat terjadi kapan saja sehingga anda tidak dapat menetapkan mutableStateOf ke variabel di dalam composable
+   - Untuk mempertahankan state, ingat state menggunakan `remember`
+   - `remember` digunakan untuk menjaga dari rekomposisi, sehingga status tidak direset

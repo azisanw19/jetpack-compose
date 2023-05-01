@@ -13,6 +13,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,6 +53,13 @@ private fun MyApp(
 
 @Composable
 fun Greeting(name: String) {
+    // menyimpan state perubahan ketika onClick dan mengingat statusnya
+    val expanded = remember { mutableStateOf(false) }
+
+    // menambahkan extra padding
+    // extra padding tidak perlu dilakukan remmeber karena bergantung pada value lain
+    val extraPadding = if (expanded.value) 48.dp else 0.dp
+
     // dengan menggunakan materialTheme warna text juga berubah menjadi onPrimary
     Surface(
         color = MaterialTheme.colorScheme.primary,
@@ -59,14 +68,18 @@ fun Greeting(name: String) {
         // membuat baris
         Row(modifier = Modifier.padding(24.dp)) {
             // membuat column
-            Column(modifier = Modifier.weight(1f)) {
+            Column(modifier = Modifier
+                .weight(1f)
+                .padding(bottom = extraPadding)
+            ) {
                 Text(text = "Hello,")
                 Text(text = name)
             }
 
             // membuat elevatedButton
-            ElevatedButton(onClick = { /* TODO */ }) {
-                Text(text = "Show more")
+            // saat onClick akan memicu rekomposisi
+            ElevatedButton(onClick = { expanded.value = !expanded.value }) {
+                Text(text = if (expanded.value) "Show less" else " Show more")
             }
         }
     }
