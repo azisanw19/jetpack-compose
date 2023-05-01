@@ -3,8 +3,12 @@ package com.canwar.jetpackcompose.ui.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -30,23 +34,41 @@ class BasicJetpackComposeActivity : ComponentActivity() {
 
 // menggunakan kembali composable
 @Composable
-private fun MyApp(modifier: Modifier = Modifier) {
-    Surface(
-        modifier = modifier,
-        color = MaterialTheme.colorScheme.background
+private fun MyApp(
+    modifier: Modifier = Modifier,
+    names: List<String> = listOf("World", "Compose")
+) {
+    // membuat column
+    Column(
+        modifier = modifier.padding(vertical = 4.dp)
     ) {
-        Greeting("Android")
+        // android compose list
+        for (name in names) {
+            Greeting(name)
+        }
     }
 }
 
 @Composable
 fun Greeting(name: String) {
     // dengan menggunakan materialTheme warna text juga berubah menjadi onPrimary
-    Surface(color = MaterialTheme.colorScheme.primary) {
-        Text(
-            text = "Hello $name!",
-            modifier = Modifier.padding(all = 24.dp)
-        )
+    Surface(
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
+        // membuat baris
+        Row(modifier = Modifier.padding(24.dp)) {
+            // membuat column
+            Column(modifier = Modifier.weight(1f)) {
+                Text(text = "Hello,")
+                Text(text = name)
+            }
+
+            // membuat elevatedButton
+            ElevatedButton(onClick = { /* TODO */ }) {
+                Text(text = "Show more")
+            }
+        }
     }
 }
 
