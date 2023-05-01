@@ -30,3 +30,5 @@
    - remember digunakan menyimpan status lokal dalam memori 
    - mutableStateOf digunakan untuk memantau perubahan pada nilai
    - Dengan menggunakan remember dan mutableStateOf perubahan apapun pada status akan otomatis memperbarui UI
+   - animateColorAsState digunakan untuk mengubah color dan animate
+   - animateContentSize digunakan untuk mengubah ukuran content dan animate

@@ -4,6 +4,8 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -156,12 +158,18 @@ fun MessageCardConfigurationLayout(msg: Message) {
         // dengan menggunakan remember dan mutableStateOf perubahan apapun pada status akan otomatis memperbarui UI
         var isExpanded by remember { mutableStateOf(false) }
 
+        // update color
+        val surfaceColor by animateColorAsState(
+            targetValue = if (isExpanded) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+            label = "message_color"
+        )
+
         // Mengubah value isExpanded saat di klik
         Column(modifier = Modifier.clickable { isExpanded = !isExpanded }) {
             Text(
                 text = msg.author,
                 // add color
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                color = MaterialTheme.colorScheme.secondary,
                 // add style
                 style = MaterialTheme.typography.headlineMedium
             )
@@ -169,7 +177,13 @@ fun MessageCardConfigurationLayout(msg: Message) {
             Spacer(modifier = Modifier.height(4.dp))
 
             // menambahkan shape
-            Surface(shape = MaterialTheme.shapes.medium, shadowElevation = 1.dp) {
+            Surface(
+                shape = MaterialTheme.shapes.medium, shadowElevation = 1.dp,
+                // mengubah warna
+                color = surfaceColor,
+                // menganimasikan ukuran penampung
+                modifier = Modifier.animateContentSize().padding(1.dp)
+            ) {
                 Text(
                     text = msg.body,
                     // add padding
