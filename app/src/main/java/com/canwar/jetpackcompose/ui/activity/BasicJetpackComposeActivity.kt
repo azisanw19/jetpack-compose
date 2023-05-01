@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,8 +34,8 @@ class BasicJetpackComposeActivity : ComponentActivity() {
             JetpackComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
-//                    MyApp(modifier = Modifier.fillMaxSize())
-                    LazyColumnExample(modifier = Modifier.fillMaxSize())
+                    MyApp(modifier = Modifier.fillMaxSize())
+//                    LazyColumnExample(modifier = Modifier.fillMaxSize())
                 }
             }
         }
@@ -104,7 +105,8 @@ fun GreetingPreview() {
 @Composable
 fun MyApp(modifier: Modifier = Modifier) {
 
-    var shouldShowOnBoarding by remember { mutableStateOf(true) }
+    // dengan menggunakan `rememberSaveable` setiap perubahan konfigurasi seperti rotasi dan penghentian proses akan disimpan
+    var shouldShowOnBoarding by rememberSaveable { mutableStateOf(true) }
 
     Surface(modifier) {
         if (shouldShowOnBoarding) {

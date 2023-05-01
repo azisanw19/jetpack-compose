@@ -60,3 +60,9 @@
    - `LazyColumn` dan `LazyRow` hanya merender item yang terlihat di screen sehingga meningkatkan performa
    - `Items` elemen yang disediakan `LazyColumn` dan `LazyRow` tempat logika rendering setiap elemen
    - Tidak seperti RecyclerView `LazyColumn` tidak mendaur ulang turunannya. Composable baru akan ditampilkan saat dilakukan scroll
+
+7. Mempertahankan State
+   - Fungsi `remember` hanya berfungsi selama composable disimpan dikomposisi
+   - Saat melakukan rotasi, seluruh aktivitas dimuat ulang, sehingga semua state hilang
+   - Hal ini juga terjadi saat perubahan konfigurasi dan penghentian proses
+   - `rememberSaveable` setiap perubahan konfigurasi state yang masih ada dan pengehentian proses akan disimpan
