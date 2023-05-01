@@ -74,4 +74,6 @@
 
 9. Style dan Theme
    - Menggunakan prinsip desain [material](https://m3.material.io/)
-   - 
+
+10. Sentuhan Akhir
+   - Membuat lebih menarik
