@@ -66,3 +66,8 @@
    - Saat melakukan rotasi, seluruh aktivitas dimuat ulang, sehingga semua state hilang
    - Hal ini juga terjadi saat perubahan konfigurasi dan penghentian proses
    - `rememberSaveable` setiap perubahan konfigurasi state yang masih ada dan pengehentian proses akan disimpan
+
+8. Menganimasikan
+   - `animateDpAsState` adalah salah satu API tingkat rendah
+   - API animasi lain dapat dilihat pada [Dokumentasi](https://developer.android.com/jetpack/compose/animation?hl=id)
+   - `Spring` dapat digunakan untuk menyesuaikan animasi

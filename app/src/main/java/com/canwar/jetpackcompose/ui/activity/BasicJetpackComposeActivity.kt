@@ -3,6 +3,9 @@ package com.canwar.jetpackcompose.ui.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,14 +49,14 @@ class BasicJetpackComposeActivity : ComponentActivity() {
 @Composable
 private fun Greetings(
     modifier: Modifier = Modifier,
-    names: List<String> = listOf("World", "Compose")
+    names: List<String> = List(1000) { "Android" }
 ) {
     // membuat column
-    Column(
+    LazyColumn(
         modifier = modifier.padding(vertical = 4.dp)
     ) {
         // android compose list
-        for (name in names) {
+        items(items = names) { name ->
             Greeting(name)
         }
     }
@@ -62,11 +65,21 @@ private fun Greetings(
 @Composable
 fun Greeting(name: String) {
     // menyimpan state perubahan ketika onClick dan mengingat statusnya
+    // ketika dilakukan scroll hingga screen menutupi list dapat dilihat expanded state kembali ke default false
+    // untuk mengubahnya dapat menggunakan `rememberSaveable`
     val expanded = remember { mutableStateOf(false) }
 
     // menambahkan extra padding
     // extra padding tidak perlu dilakukan remmeber karena bergantung pada value lain
-    val extraPadding = if (expanded.value) 48.dp else 0.dp
+    // menambahkan animasi
+    val extraPadding by animateDpAsState(targetValue = if (expanded.value) 48.dp else 0.dp,
+        label = "extra padding",
+        // menyesuaikan animasi
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
 
     // dengan menggunakan materialTheme warna text juga berubah menjadi onPrimary
     Surface(
@@ -79,7 +92,8 @@ fun Greeting(name: String) {
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(bottom = extraPadding)
+                    // memastikan padding tidak pernah negatid
+                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello,")
                 Text(text = name)
