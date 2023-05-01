@@ -77,3 +77,16 @@
 
 10. Sentuhan Akhir
    - Membuat lebih menarik
+
+## Bermigrasi ke Jetpack Compose
+
+1. Strategi migrasi
+   - Membuat fitur baru dengan compose 
+   - Saat membuat fitur, identifikasi elemen yang dapat digunakan kembali dan mulai buat library komponen UI umum
+   - Ganti fitu yang ada di satu layar dalam satu waktu
+
+2. Noted
+   - Compose akan terhapus setiap kali compose view lepas dari jendela
+   - Pada fragments hal ini tidak diinginkan karena komposisi harus mengikuti siklus proses tampilan fragmen untuk jenis view guna menyimpan status dan compose view akan berada dalam status terpisah, namun elemen UI compose akan terlihat saat transisi
+   - dapat dimodifikasi dengan `setViewCompositionStrategy` sehingga dapat mengikuti lifecycle fragments
+   - untuk menggunakan thema yang ada xml file dapat digunakan library [Accompanist Material Theme Adapter](https://github.com/google/accompanist/tree/main/themeadapter-material) MdcTheme akan membaca theme MDC konteks host dan meneruskannya ke MaterialTheme
