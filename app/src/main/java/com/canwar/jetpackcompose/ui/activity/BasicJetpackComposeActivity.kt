@@ -20,14 +20,22 @@ class BasicJetpackComposeActivity : ComponentActivity() {
         setContent {
             JetpackComposeTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+                Surface(color = MaterialTheme.colorScheme.background) {
+                    MyApp(modifier = Modifier.fillMaxSize())
                 }
             }
         }
+    }
+}
+
+// menggunakan kembali composable
+@Composable
+private fun MyApp(modifier: Modifier = Modifier) {
+    Surface(
+        modifier = modifier,
+        color = MaterialTheme.colorScheme.background
+    ) {
+        Greeting("Android")
     }
 }
 
@@ -46,6 +54,6 @@ fun Greeting(name: String) {
 @Composable
 fun GreetingPreview() {
     JetpackComposeTheme {
-        Greeting("Android")
+        MyApp()
     }
 }

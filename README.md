@@ -36,3 +36,4 @@
 ## Dasar-dasar Jetpack Compose
 
 1. Menyesuaikan UI   
+2. Menggunakan kembali composable menghindari duplikasi code
