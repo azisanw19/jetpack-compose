@@ -1,5 +1,6 @@
 package com.canwar.jetpackcompose.ui.activity
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -26,9 +27,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.canwar.jetpackcompose.ui.activity.ui.theme.JetpackComposeTheme
+import com.canwar.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class BasicJetpackComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +74,8 @@ fun Greeting(name: String) {
     // menambahkan extra padding
     // extra padding tidak perlu dilakukan remmeber karena bergantung pada value lain
     // menambahkan animasi
-    val extraPadding by animateDpAsState(targetValue = if (expanded.value) 48.dp else 0.dp,
+    val extraPadding by animateDpAsState(
+        targetValue = if (expanded.value) 48.dp else 0.dp,
         label = "extra padding",
         // menyesuaikan animasi
         animationSpec = spring(
@@ -96,7 +99,13 @@ fun Greeting(name: String) {
                     .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello,")
-                Text(text = name)
+                Text(
+                    text = name,
+                    // menggunakan materialTheme style
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        fontWeight = FontWeight.ExtraBold
+                    )
+                )
             }
 
             // membuat elevatedButton
@@ -108,7 +117,14 @@ fun Greeting(name: String) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 320)
+// Menambahkan preview dark mode
+@Preview(
+    showBackground = true,
+    widthDp = 320,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "Dark"
+)
 @Composable
 fun GreetingPreview() {
     JetpackComposeTheme {

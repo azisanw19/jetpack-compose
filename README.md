@@ -71,3 +71,7 @@
    - `animateDpAsState` adalah salah satu API tingkat rendah
    - API animasi lain dapat dilihat pada [Dokumentasi](https://developer.android.com/jetpack/compose/animation?hl=id)
    - `Spring` dapat digunakan untuk menyesuaikan animasi
+
+9. Style dan Theme
+   - Menggunakan prinsip desain [material](https://m3.material.io/)
+   - 
