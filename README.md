@@ -49,8 +49,14 @@
    - Rekomposisi dapat terjadi kapan saja sehingga anda tidak dapat menetapkan mutableStateOf ke variabel di dalam composable
    - Untuk mempertahankan state, ingat state menggunakan `remember`
    - `remember` digunakan untuk menjaga dari rekomposisi, sehingga status tidak direset
+
 5. State Hoisting
    - `by` adalah delegasi properti agar tidak perlu mengetikkan .value
    - Compose tidak menyembunyikan UI, tetapi tidak menambahkannya ke komposisi sehingga tidak ditambahkan ke hierarki UI yang dihasilkan compose dilakukan menggunakan logika kotlin sederhana
    - Callback adalah fungsi yang diteruskan sebagai argumen ke fungsi lainnya dan dijalankan saat peristiwa terjadi
    - dengan meneruskan fungsi Callback bukan status onBoardingScreen, membuat Composable dapat digunakan kembali dan melindungi state agar tidak diubah oleh Composable lain
+
+6. LazyList Performa lebih baik
+   - `LazyColumn` dan `LazyRow` hanya merender item yang terlihat di screen sehingga meningkatkan performa
+   - `Items` elemen yang disediakan `LazyColumn` dan `LazyRow` tempat logika rendering setiap elemen
+   - Tidak seperti RecyclerView `LazyColumn` tidak mendaur ulang turunannya. Composable baru akan ditampilkan saat dilakukan scroll

@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +33,8 @@ class BasicJetpackComposeActivity : ComponentActivity() {
             JetpackComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    MyApp(modifier = Modifier.fillMaxSize())
+//                    MyApp(modifier = Modifier.fillMaxSize())
+                    LazyColumnExample(modifier = Modifier.fillMaxSize())
                 }
             }
         }
@@ -134,4 +137,21 @@ fun OnboardingScreen(
             Text("Continue")
         }
     }
+}
+
+@Composable
+fun LazyColumnExample(
+    modifier: Modifier = Modifier,
+    names: List<String> = List(1000) { "Lazy" }
+) {
+
+    // `LazyColumn` dan `LazyRow` hanya merender item yang terlihat di screen sehingga meningkatkan performa
+    // `Items` elemen yang disediakan `LazyColumn` dan `LazyRow` tempat logika rendering setiap elemen
+    // Tidak seperti RecyclerView `LazyColumn` tidak mendaur ulang turunannya. Composable baru akan ditampilkan saat dilakukan scroll
+    LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
+        items(items = names) { name ->
+            Greeting(name = name)
+        }
+    }
+
 }
