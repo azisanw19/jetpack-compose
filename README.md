@@ -140,3 +140,5 @@
 
 10. MySoothe App
     - `Scaffold` composable tingkat atas yang dapat dikonfigurasi, digunakan untuk berbagai komponen dan elemen layar lainnya seperti topBar, bottomBar
+
+11. Remember Text Field
