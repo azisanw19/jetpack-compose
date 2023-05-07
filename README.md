@@ -162,4 +162,8 @@
 4. UI Berbasis State
    - `Composable` dapat dipanggil berdasarkan if sehingga `Composable` dapat membentuk UI atau tidak sesuai kebutuhan
    - Untuk memeriksa layout aplikasi yang dibuat oleh compose dapat menggunakan [Layout Inspector Android Studio](https://developer.android.com/studio/debug/layout-inspector?hl=id)
-     - State mendorong elemen mana yang ditampilkan pada UI
+   - State mendorong elemen mana yang ditampilkan pada UI
+
+5. Remember dalam Compose
+   - `remember` menyimpan objek dalam composable dan melupakan initial value ketika rekomposisi
+   - Jika komposisi tidak dipanggil dalam rekomposisi berikutnya `remember` yang didalam komposisi akan dilupakan karena tidak dipanggil sehingga akan tereset
