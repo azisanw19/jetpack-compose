@@ -124,3 +124,8 @@
 
 6. Favorite Collections Grid
    - `LazyHorizontalGrid` digunakan untuk memetakan elemen secara horizontal dengan beberapa grid
+
+7. Home Section
+   - API Slot adalah sebuah pola yang dibuat compose untuk menghadirkan lapisan penyesuaian diatas composable 
+   - membuat komponen lebih fleksible karena menerima elemen turunan yang dapat mengonfigurasi sendiri
+   - slot memberikan ruang kosong UI untuk diisi developer sesuai keinginan, contoh slot `TopAppBar`

@@ -42,6 +42,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.canwar.jetpackcompose.R
 import com.canwar.jetpackcompose.basicLayoutActicvity.ui.theme.MySootheTheme
+import java.util.Locale
 
 class BasicLayoutActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -188,12 +189,27 @@ fun FavoriteCollectionsGrid(
 
 }
 
-// Step: Home section - Slot APIs
 @Composable
 fun HomeSection(
-    modifier: Modifier = Modifier
+    @StringRes title: Int,
+    modifier: Modifier = Modifier,
+    // Lambda function sebagai slot composable
+    content: @Composable () -> Unit
 ) {
-    // Implement composable here
+
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = stringResource(id = title).uppercase(Locale.getDefault()),
+            style = MaterialTheme.typography.h2,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 8.dp)
+                .padding(horizontal = 16.dp)
+        )
+        // content dapat digunakan slot composable
+        content()
+    }
 }
 
 // Step: Home screen - Scrolling
@@ -281,7 +297,11 @@ fun AlignYourBodyRowPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun HomeSectionPreview() {
-    MySootheTheme { HomeSection() }
+    MySootheTheme {
+        HomeSection(R.string.align_your_body) {
+            AlignYourBodyRow()
+        }
+    }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
