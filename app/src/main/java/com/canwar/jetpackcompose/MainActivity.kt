@@ -34,7 +34,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.canwar.jetpackcompose.R
 import com.canwar.jetpackcompose.data.SampleData
 import com.canwar.jetpackcompose.ui.theme.JetpackComposeTheme
 

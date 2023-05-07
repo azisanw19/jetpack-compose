@@ -109,3 +109,8 @@
    - Dalam `TextField` berisi parameter `leadingIcon` yang menerima composable lain
    - `leadingIcon` tidak memerlukan `contentDescription` karena placeholder `TextField` sudah menjelaskan arti kolom teks
    - Untuk menyesuaikan warna dapat digunakan properti `colors`
+
+3. Align Your Body
+   - `contentDescription` dibuat null karena gambar ini bersifat dekoratif, teks dibawah gambar menjelaskan maknanya
+   - `Alignment` digunakan untuk perataan content
+   - `paddingFromBaseline` digunakan untuk membuat padding dari baseline

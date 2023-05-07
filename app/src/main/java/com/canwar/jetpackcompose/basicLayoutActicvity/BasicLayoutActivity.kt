@@ -1,13 +1,18 @@
-package com.canwar.jetpackcompose
+package com.canwar.jetpackcompose.basicLayoutActicvity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -16,11 +21,16 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.canwar.jetpackcompose.ui.theme.JetpackComposeTheme
+import com.canwar.jetpackcompose.R
+import com.canwar.jetpackcompose.basicLayoutActicvity.ui.theme.MySootheTheme
 
 class BasicLayoutActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,10 +74,35 @@ fun SearchBar(
 // Step: Align your body - Alignment
 @Composable
 fun AlignYourBodyElement(
+    @DrawableRes drawable: Int,
+    @StringRes text: Int,
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
-
+    Column(
+        // membuat content to center horizontal
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    )
+    {
+        // `contentDescription` dibuat null karena gambar ini bersifat dekoratif, teks dibawah gambar menjelaskan maknanya
+        Image(
+            painter = painterResource(id = drawable),
+            contentDescription = null,
+            // Scale content to crop
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(88.dp)
+                .clip(CircleShape)
+        )
+        Text(
+            text = stringResource(id = text),
+            style = MaterialTheme.typography.h3,
+            // Digunakan untuk membuat jarak padding
+            modifier = Modifier.paddingFromBaseline(
+                top = 24.dp, bottom = 8.dp
+            )
+        )
+    }
 }
 
 // Step: Favorite collection card - Material Surface
@@ -145,14 +180,16 @@ private data class DrawableStringPair(
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun SearchBarPreview() {
-    JetpackComposeTheme { SearchBar(Modifier.padding(8.dp)) }
+    MySootheTheme { SearchBar(Modifier.padding(8.dp)) }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun AlignYourBodyElementPreview() {
-    JetpackComposeTheme {
+    MySootheTheme {
         AlignYourBodyElement(
+            text = R.string.ab1_inversions,
+            drawable = R.drawable.ab1_inversions,
             modifier = Modifier.padding(8.dp)
         )
     }
@@ -161,7 +198,7 @@ fun AlignYourBodyElementPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionCardPreview() {
-    JetpackComposeTheme {
+    MySootheTheme {
         FavoriteCollectionCard(
             modifier = Modifier.padding(8.dp)
         )
@@ -171,31 +208,31 @@ fun FavoriteCollectionCardPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun FavoriteCollectionsGridPreview() {
-    JetpackComposeTheme { FavoriteCollectionsGrid() }
+    MySootheTheme { FavoriteCollectionsGrid() }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun AlignYourBodyRowPreview() {
-    JetpackComposeTheme { AlignYourBodyRow() }
+    MySootheTheme { AlignYourBodyRow() }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun HomeSectionPreview() {
-    JetpackComposeTheme { HomeSection() }
+    MySootheTheme { HomeSection() }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun ScreenContentPreview() {
-    JetpackComposeTheme { HomeScreen() }
+    MySootheTheme { HomeScreen() }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
 @Composable
 fun BottomNavigationPreview() {
-    JetpackComposeTheme { SootheBottomNavigation(Modifier.padding(top = 24.dp)) }
+    MySootheTheme { SootheBottomNavigation(Modifier.padding(top = 24.dp)) }
 }
 
 @Preview(widthDp = 360, heightDp = 640)
