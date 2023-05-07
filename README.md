@@ -129,3 +129,8 @@
    - API Slot adalah sebuah pola yang dibuat compose untuk menghadirkan lapisan penyesuaian diatas composable 
    - membuat komponen lebih fleksible karena menerima elemen turunan yang dapat mengonfigurasi sendiri
    - slot memberikan ruang kosong UI untuk diisi developer sesuai keinginan, contoh slot `TopAppBar`
+
+8. Home Screen
+   - Lazy digunakan jika memiliki banyak elemen dalam daftar atau dataset besar untuk dimuat
+   - `verticalScroll` memerlukan `ScrollState` yang digunakan untuk mengubah status scroll dari luar
+   - `rememberScrellState` dapat digunakan jika tidak ingin mengubah status scroll dari luar
