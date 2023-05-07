@@ -158,3 +158,8 @@
    - Ada beberapa cara yang setara seperti yang ditampilkan pada [dokumentasi State Compose](https://developer.android.com/jetpack/compose/state?hl=id#state-in-composables)
    - `LiveData`, `StateFlow`, `Flow` dan `Observable` Rx Java dapat digunakan untuk merekomposisi dengan memetakannya ke State<T>
    - Ada fungsi ekstensi yang didesain untuk merubah state terdapat pada [Compose dan library lainnya](https://developer.android.com/jetpack/compose/state?hl=id#state-in-composables)
+
+4. UI Berbasis State
+   - `Composable` dapat dipanggil berdasarkan if sehingga `Composable` dapat membentuk UI atau tidak sesuai kebutuhan
+   - Untuk memeriksa layout aplikasi yang dibuat oleh compose dapat menggunakan [Layout Inspector Android Studio](https://developer.android.com/studio/debug/layout-inspector?hl=id)
+     - State mendorong elemen mana yang ditampilkan pada UI

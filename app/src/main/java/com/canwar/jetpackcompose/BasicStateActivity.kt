@@ -70,8 +70,37 @@ fun WaterCounter(
 }
 
 @Composable
+fun WaterCounterCondition(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier.padding(16.dp)
+    ) {
+        var count by remember {
+            mutableStateOf(0)
+        }
+
+        if (count > 0) {
+            Text(
+                text = "You've had $count glasses.",
+            )
+        }
+
+        Button(
+            onClick = { count++ },
+            enabled = count < 10,
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            Text(text = "Add one")
+        }
+
+    }
+
+}
+
+@Composable
 fun WellnessScreen(
     modifier: Modifier = Modifier
 ) {
-    WaterCounter(modifier)
+    WaterCounterCondition(modifier)
 }
