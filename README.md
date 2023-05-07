@@ -121,3 +121,6 @@
 5. Align Your Body Row
    - Turunan `LazyRow` bukan composable, sebagai gantinya dapat menggunakan DSL slow list yang menyediakan metode `item` dan `items` yang memunculkan sebagai daftar item
    - `contentPadding` tetap men-scroll konten dalam batas daftar parent tanpa memotongnya
+
+6. Favorite Collections Grid
+   - `LazyHorizontalGrid` digunakan untuk memetakan elemen secara horizontal dengan beberapa grid
