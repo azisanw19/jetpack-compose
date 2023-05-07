@@ -114,3 +114,6 @@
    - `contentDescription` dibuat null karena gambar ini bersifat dekoratif, teks dibawah gambar menjelaskan maknanya
    - `Alignment` digunakan untuk perataan content
    - `paddingFromBaseline` digunakan untuk membuat padding dari baseline
+
+4. Favorite Collection Card
+   - `Surface` adalah permukaan yang dapat dimodifikasi
