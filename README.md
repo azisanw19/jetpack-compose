@@ -95,3 +95,17 @@
 
 1. Mulai dengan rencana
    - Menganalisis desain, membagi UI menjadi beberapa bagian yang dapat digunakan kembali
+   
+2. SearchBar
+   - Praktek terbaik composable membuat parameter `Modifier` hal ini memungkinkan pemanggil fungsi untuk mengubah tampilan dan nuansa composable yang membuatnya lebih fleksible dan dapat digunakan kembali
+   - `TextField` digunakan untuk menerima input berupa teks
+   - `Modifier` dapat digunakan untuk 
+      - mengubah tata letak, behaviour, tampilan composable
+      - menambahkan informasi, seperti label aksesibilitas
+      - memproses input user
+      - menambahkan integrasi tingkat tinggi, seperti elemen dapat diklik, discroll, ditarik atau dizoom
+   - `Modifier.heightIn` digunakan untuk memastikan composable memiliki minimum tinggi tertentu, pendekatan ini direkomendasikan karena kolom masih bisa bertambah besar ketika user meningkatkan ukuran font di settings system
+   - `Modifier.fillMaxWidth` digunakan untuk mengisi semua ruang kosong horizontal
+   - Dalam `TextField` berisi parameter `leadingIcon` yang menerima composable lain
+   - `leadingIcon` tidak memerlukan `contentDescription` karena placeholder `TextField` sudah menjelaskan arti kolom teks
+   - Untuk menyesuaikan warna dapat digunakan properti `colors`

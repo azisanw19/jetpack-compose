@@ -1,4 +1,4 @@
-package com.canwar.jetpackcompose.ui.activity
+package com.canwar.jetpackcompose
 
 import android.content.res.Configuration
 import android.os.Bundle

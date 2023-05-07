@@ -1,6 +1,6 @@
 package com.canwar.jetpackcompose.data
 
-import com.canwar.jetpackcompose.ui.activity.Message
+import com.canwar.jetpackcompose.Message
 
 object SampleData {
     // Sample conversation data
