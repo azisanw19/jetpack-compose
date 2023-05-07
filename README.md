@@ -134,3 +134,6 @@
    - Lazy digunakan jika memiliki banyak elemen dalam daftar atau dataset besar untuk dimuat
    - `verticalScroll` memerlukan `ScrollState` yang digunakan untuk mengubah status scroll dari luar
    - `rememberScrellState` dapat digunakan jika tidak ingin mengubah status scroll dari luar
+
+9. Bottom Navigation
+   - Dokumentasi sistem desain Jetpack Compose dapat dilihat pada [dokumentasi thema](https://developer.android.com/jetpack/compose/themes?hl=id)
