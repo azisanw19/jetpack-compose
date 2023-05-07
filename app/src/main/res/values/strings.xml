@@ -23,4 +23,5 @@
     <string name="bottom_navigation_profile">PROFILE</string>
     <string name="placeholder_search">Search</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_basic_state">BasicStateActivity</string>
 </resources>

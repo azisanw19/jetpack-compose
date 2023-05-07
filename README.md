@@ -142,3 +142,8 @@
     - `Scaffold` composable tingkat atas yang dapat dikonfigurasi, digunakan untuk berbagai komponen dan elemen layar lainnya seperti topBar, bottomBar
 
 11. Remember Text Field
+
+## State dalam Jetpack Compose
+
+1. State
+   - State aplikasi adalah nilai yang dapat berubah dari waktu ke waktu
