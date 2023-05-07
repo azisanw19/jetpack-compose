@@ -147,3 +147,14 @@
 
 1. State
    - State aplikasi adalah nilai yang dapat berubah dari waktu ke waktu
+
+2. Event
+   - Event adalah input yang dihasilkan dari luar atau dari dalam aplikasi
+
+3. Memori dalam Composable
+   - Dengan menggunakan `state` dan `mutableStateOf` compose dapat direkomposisi setelah perubahan state
+   - rekomposisi dengan `remember` membuat state tidak diinisialisasi kembali
+   - `remember` dan `mutableStateOf` digunakan secara bersama-sama dalam composable
+   - Ada beberapa cara yang setara seperti yang ditampilkan pada [dokumentasi State Compose](https://developer.android.com/jetpack/compose/state?hl=id#state-in-composables)
+   - `LiveData`, `StateFlow`, `Flow` dan `Observable` Rx Java dapat digunakan untuk merekomposisi dengan memetakannya ke State<T>
+   - Ada fungsi ekstensi yang didesain untuk merubah state terdapat pada [Compose dan library lainnya](https://developer.android.com/jetpack/compose/state?hl=id#state-in-composables)
