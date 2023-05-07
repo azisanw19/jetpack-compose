@@ -137,3 +137,6 @@
 
 9. Bottom Navigation
    - Dokumentasi sistem desain Jetpack Compose dapat dilihat pada [dokumentasi thema](https://developer.android.com/jetpack/compose/themes?hl=id)
+
+10. MySoothe App
+    - `Scaffold` composable tingkat atas yang dapat dikonfigurasi, digunakan untuk berbagai komponen dan elemen layar lainnya seperti topBar, bottomBar

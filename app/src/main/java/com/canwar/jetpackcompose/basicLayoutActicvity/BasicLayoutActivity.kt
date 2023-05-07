@@ -1,6 +1,5 @@
 package com.canwar.jetpackcompose.basicLayoutActicvity
 
-import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,6 +30,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -56,7 +56,7 @@ class BasicLayoutActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SearchBar()
+            MySootheApp()
         }
     }
 }
@@ -288,7 +288,18 @@ private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
 
 @Composable
 fun MySootheApp() {
+    MySootheTheme {
+        // `Scaffold` composable tingkat atas yang dapat dikonfigurasi
+        // digunakan untuk berbagai komponen dan elemen layar lainnya seperti topBar, bottomBar
+         Scaffold(
+             bottomBar = {
+                 SootheBottomNavigation()
+             }
+         ) { padding ->
+             HomeScreen(modifier = Modifier.padding(padding))
 
+         }
+    }
 }
 
 private val alignYourBodyData = listOf(
