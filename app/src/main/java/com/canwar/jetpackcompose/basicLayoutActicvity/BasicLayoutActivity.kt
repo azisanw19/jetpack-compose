@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -14,6 +16,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -137,15 +141,22 @@ fun FavoriteCollectionCard(
     }
 }
 
-// Step: Align your body row - Arrangements
 @Composable
 fun AlignYourBodyRow(
     modifier: Modifier = Modifier
 ) {
-    // Implement composable here
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        // `contentPadding` tetap men-scroll konten dalam batas daftar parent tanpa memotongnya
+        contentPadding = PaddingValues(16.dp),
+        modifier = modifier
+    ) {
+        items(alignYourBodyData) {item ->
+            AlignYourBodyElement(item.drawable, item.text)
+        }
+    }
 }
 
-// Step: Favorite collections grid - LazyGrid
 @Composable
 fun FavoriteCollectionsGrid(
     modifier: Modifier = Modifier
