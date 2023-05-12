@@ -167,3 +167,17 @@
 5. Remember dalam Compose
    - `remember` menyimpan objek dalam composable dan melupakan initial value ketika rekomposisi
    - Jika komposisi tidak dipanggil dalam rekomposisi berikutnya `remember` yang didalam komposisi akan dilupakan karena tidak dipanggil sehingga akan tereset
+
+## Tema Jetpack Compose
+
+1. Penerapan Tema Material
+   - Tema material terdiri dari warna, tipografi, dan bentuk dapat dipelajari pada [Material 2](https://m2.material.io/) dan [material 3](https://m3.material.io/)
+   - Material ditetapkan secara default dengan skema warna ungu, tipografi Roboto dan bentuk yang sedikit membulat.
+
+2. Menentukan Tema
+   - Untuk mengonversi warna dari format `#dd0d3c`, ganti `#` dengan `0xff` yaitu `Color(0xffdd0d3c)` dengan `ff` berarti alfa penuh
+   - Saat menentukan warna, lebih baik menggunakan nilai warna mis Red500 bukan primary. Dengan ini menentukan beberapa tema dapat dimungkinkan, mis warna lain mungkin dianggap primary dalam tema gelap atau pada layar dengan gaya yang berbeda
+   - Jika tidak memiliki warna utama dan sekunder yang terpisah, tidak masalah untuk menyediakan warna yang sama untuk keduanya
+   - Typografi
+   - Shape
+   - Dark Mode
