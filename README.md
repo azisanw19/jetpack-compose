@@ -216,3 +216,9 @@
 6. Eksplisit
    - Compose tidak menawarkan cara yang eksplisit untuk mengekstrak gaya komponen seperti gaya Android View atau haya css.
    - Ada cara lain untuk mencapai sasaran yang sama dengan membuat library komponen kustom sendiri dan gunakan di seluruh aplikasi
+
+# Layout, Theme, and, Animation
+
+1. Deep dive into Jetpack Compose Layouts
+   - Jetpack transform state ke UI dari Composition -> Layout -> Drawing
+   - Menggunakan Skema Tree
