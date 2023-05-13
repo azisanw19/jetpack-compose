@@ -181,3 +181,24 @@
    - Typografi
    - Shape
    - Dark Mode
+
+3. Handling Color
+   - Compose menggunakan class `Color` untuk memberi warna
+   - Hardcode color tidak mendukung berbagai tema terang/gelap
+   - Pendekatan yang lebih fleksible dengan cara mengambil warna dari tema
+   - Component menerima sepasang `color` dan `contentColor`
+   - `contentColorFor` mengambil warna yang sesuai untuk warna tema, misalnya background `primary` akan menampilkan `onPrimary` pada `contentColor`
+   - Default `MaterialTheme` menggunakan sepasang warna, misalnya `primary` dan `onPrimary`, `error` dan `onError`
+   - `LocalContentColor` `CompositionLocal` untuk mengambil warna yang kontras dengan latar belakang yang sedang digunakan
+   - Ketika menetapkan warna elemen apa pun, sebaiknya gunakan `Surface` untuk melakukan hal ini karena menetapkan warna konten yang sesuai untuk nilai `CompositionLocal`
+```kotlin
+-Row(Modifier.background(MaterialTheme.colors.primary)) {}
++Surface(color = MaterialTheme.colors.primary) { 
+   +Row()
+}
+```
+   - Material menyarankan berbagai level opasitas `alpha` untuk menyatakan level nilai penting yang berbeda
+   - Jetpack Compose menggunakan level opasitad melalui `LocalContentAlpha`
+   - Dalam tema gelap, permukaan dengan elevasi lebih tinggi menerima overlay elevasi (latar belakangnya akan lebih terang)
+   - Desain material menyarankan untuk menghindari area luas dengan warna cerah pada tema gelap
+   - Pola umum adalah memberi warna `primary` pada penampung dalam tema terang dan warna `surface` pada tema gelap
