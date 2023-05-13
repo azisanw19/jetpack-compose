@@ -210,3 +210,5 @@
    - `AnnotatedString` untuk menerapkan beberapa ga teks
    - Dibalik layar composable `ProvideTextStyle` yang menggunakan `CompositionLocal` menyetel `TextStyle`
    - Jika perlu menerapkan beberapa style ke beberapa teks, dapat menggunakan class `AnnotatedString` untuk menerapkan markup, dengan menambahkan SpanStyle ke berbagai teks.
+
+5. Handling Shape
