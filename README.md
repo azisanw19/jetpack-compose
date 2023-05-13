@@ -202,3 +202,11 @@
    - Dalam tema gelap, permukaan dengan elevasi lebih tinggi menerima overlay elevasi (latar belakangnya akan lebih terang)
    - Desain material menyarankan untuk menghindari area luas dengan warna cerah pada tema gelap
    - Pola umum adalah memberi warna `primary` pada penampung dalam tema terang dan warna `surface` pada tema gelap
+
+4. Handling Teks
+   - `Text` untuk menampilkan text
+   - `TextField` dan `OutlinedTextField` untuk input teks
+   - `TextStyle` untuk menerapkan gaya teks
+   - `AnnotatedString` untuk menerapkan beberapa ga teks
+   - Dibalik layar composable `ProvideTextStyle` yang menggunakan `CompositionLocal` menyetel `TextStyle`
+   - Jika perlu menerapkan beberapa style ke beberapa teks, dapat menggunakan class `AnnotatedString` untuk menerapkan markup, dengan menambahkan SpanStyle ke berbagai teks.
