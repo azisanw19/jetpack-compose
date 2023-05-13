@@ -212,3 +212,7 @@
    - Jika perlu menerapkan beberapa style ke beberapa teks, dapat menggunakan class `AnnotatedString` untuk menerapkan markup, dengan menambahkan SpanStyle ke berbagai teks.
 
 5. Handling Shape
+
+6. Eksplisit
+   - Compose tidak menawarkan cara yang eksplisit untuk mengekstrak gaya komponen seperti gaya Android View atau haya css.
+   - Ada cara lain untuk mencapai sasaran yang sama dengan membuat library komponen kustom sendiri dan gunakan di seluruh aplikasi
