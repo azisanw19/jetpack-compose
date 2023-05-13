@@ -229,3 +229,5 @@
    - menyesuaikan animasi harus berupa instance `EnterTransition`
    - `slideInVertically` dan `slideOutVertically` menggunakan setengah tinggi item default
    - `animateContentSize` dapat digunakan untuk animasi size content dapat dimodifikasi dengan `animationSpec`
+
+3. Transition

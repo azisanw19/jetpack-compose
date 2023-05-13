@@ -1,11 +1,16 @@
 package com.canwar.jetpackcompose.animation.ui.home
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColor
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.FastOutLinearInEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.splineBasedDecay
@@ -373,7 +378,7 @@ private fun TopicRow(topic: String, expanded: Boolean, onClick: () -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-            // animate content size
+                // animate content size
                 .animateContentSize()
         ) {
             Row {
@@ -454,9 +459,47 @@ private fun HomeTabIndicator(
     tabPage: TabPage
 ) {
     // TODO 4: Animate these value changes.
-    val indicatorLeft = tabPositions[tabPage.ordinal].left
-    val indicatorRight = tabPositions[tabPage.ordinal].right
-    val color = if (tabPage == TabPage.Home) Purple700 else Green800
+    // transition
+    val transition = updateTransition(targetState = tabPage, label = "Tab Indicator")
+    val indicatorLeft by transition.animateDp(
+        label = "Indicator left",
+        // menambahkan transtion
+        transitionSpec = {
+            if (TabPage.Home isTransitioningTo TabPage.Work) {
+                // indicator move to right
+                // left edge moves slower than right edge
+                spring(stiffness = Spring.StiffnessVeryLow)
+            } else {
+                // Indicator moves to the left.
+                // The left edge moves faster than the right edge.
+                spring(stiffness = Spring.StiffnessMedium)
+            }
+        }
+    ) { page ->
+        tabPositions[page.ordinal].left
+    }
+    val indicatorRight by transition.animateDp(
+        label = "Indicator right",
+        transitionSpec = {
+            if (TabPage.Home isTransitioningTo TabPage.Work) {
+                // Indicator moves to the right
+                // The right edge moves faster than the left edge.
+                spring(stiffness = Spring.StiffnessMedium)
+            } else {
+                // Indicator moves to the left.
+                // The right edge moves slower than the left edge.
+                spring(stiffness = Spring.StiffnessVeryLow)
+            }
+        },
+    ) { page ->
+        tabPositions[page.ordinal].right
+    }
+    val color by transition.animateColor(label = "Border color") { page ->
+        if (page == TabPage.Home) Purple700 else Green800
+    }
+//    val indicatorLeft = tabPositions[tabPage.ordinal].left
+//    val indicatorRight = tabPositions[tabPage.ordinal].right
+//    val color = if (tabPage == TabPage.Home) Purple700 else Green800
     Box(
         Modifier
             .fillMaxSize()
