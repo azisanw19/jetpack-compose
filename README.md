@@ -222,3 +222,10 @@
 1. Deep dive into Jetpack Compose Layouts
    - Jetpack transform state ke UI dari Composition -> Layout -> Drawing
    - Menggunakan Skema Tree
+
+2. Animate as State
+   - `animateColorAsState` menganimasikan perubahan color
+   - `AnimatedVisibility` menganimasukan visibility
+   - menyesuaikan animasi harus berupa instance `EnterTransition`
+   - `slideInVertically` dan `slideOutVertically` menggunakan setengah tinggi item default
+   - `animateContentSize` dapat digunakan untuk animasi size content dapat dimodifikasi dengan `animationSpec`

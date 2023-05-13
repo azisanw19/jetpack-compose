@@ -13,9 +13,9 @@
         android:theme="@style/Theme.JetpackCompose"
         tools:targetApi="31">
         <activity
-            android:name=".theming.ThemingActivity"
+            android:name=".animation.AnimationActivity"
             android:exported="true"
-            android:label="@string/title_activity_theming"
+            android:label="@string/title_activity_animation"
             android:theme="@style/Theme.JetpackCompose" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BasicStateActivity"
+            android:name=".theming.ThemingActivity"
             android:exported="true"
-            android:label="@string/title_activity_basic_state"
-            android:theme="@style/Theme.JetpackCompose" >
+            android:label="@string/title_activity_theming"
+            android:theme="@style/Theme.JetpackCompose">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,15 +35,32 @@
             </intent-filter>-->
         </activity>
         <activity
+            android:name=".BasicStateActivity"
+            android:exported="true"
+            android:label="@string/title_activity_basic_state"
+            android:theme="@style/Theme.JetpackCompose">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
             android:name=".basicLayoutActicvity.BasicLayoutActivity"
             android:exported="true"
             android:label="@string/title_activity_basic_layout"
             android:theme="@style/Theme.JetpackCompose">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".BasicJetpackComposeActivity"
