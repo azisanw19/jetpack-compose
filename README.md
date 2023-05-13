@@ -233,3 +233,6 @@
 3. Transition
 
 4. Repeat Animation
+
+5. Animation Gestur
+   - [Dokumentasi Gestur](https://developer.android.com/jetpack/compose/gestures?hl=id)
