@@ -231,3 +231,5 @@
    - `animateContentSize` dapat digunakan untuk animasi size content dapat dimodifikasi dengan `animationSpec`
 
 3. Transition
+
+4. Repeat Animation
