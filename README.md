@@ -236,3 +236,65 @@
 
 5. Animation Gestur
    - [Dokumentasi Gestur](https://developer.android.com/jetpack/compose/gestures?hl=id)
+
+## State dan Side Effect
+
+1. Aliran data
+   - Arsitektur yang baik diatur secara berlapis untuk memenuhi kebutuhan praktik desain sistem dasar yang baik, seperti pemisahan fokus dan kemampuan pengujian
+   - Menggunakan variabel read only pada `viewModel` yang dapat digunakan di UI adalah praktik terbaik, dengan menggunakan ini dapat dipastikan status UI tidak berubah kecuali melalui `viewModel`
+   - Fungsi `asStateFlow` mengonversi flow dari dapat berubah menjadi tidak dapat berubah
+   - `collectAsStateWithLifecycle()` mengumpulkan nilai dari `StateFlow` dan menampilkan nilai terbaru melalui `State` Compose dengan cara mendukung siklus proses
+   - Compose akan merekomposisi `collectAsStateWithLifecycle()`
+   - Dokumentasi `collectAsStateWithLifecycle()` [here](https://medium.com/androiddevelopers/consuming-flows-safely-in-jetpack-compose-cde014d0d5a3)
+   - Compose juga menawarkan API solusi berbasis aliran data lain seperti [`LiveData.observeAsState()`](https://developer.android.com/reference/kotlin/androidx/compose/runtime/livedata/package-summary#observeAsState(androidx.lifecycle.LiveData)), [`Observable.subscribeAsState()`](https://developer.android.com/reference/kotlin/androidx/compose/runtime/rxjava2/package-summary#subscribeAsState(io.reactivex.Observable,kotlin.Any)) dan [bebasis aliran data lain](https://developer.android.com/jetpack/compose/state?hl=id#use-other-types-of-state-in-jetpack-compose)
+
+2. LaunchedEffect dan rememberUpdateState
+   - Halaman landing akan menempati layar dan menampilkan logo aplikasi di bagian tengah layar. 
+   - Idealnya, halamman ini menampilkan layar dan setelah semua data dimuat, halaman landing dapat ditutup menggunakan callback `onTimeout`
+   - Coroutine kotlin adalah cara yang direkomendasikan untuk melakukan operasi asinkron di Android
+   - Aplikasi biasanya akan menggunakan coroutine untuk memuat sesuatu di latar belakang saat dimulai.
+   - Efek samping pada Compose adalah perubahan pada status aplikasi yang terjadi di luar cakupan fungsi composable. Misalnya, membuka layar baru saat pengguna mengetuk tombol, atau menampilkan pesan saat aplikasi tidak memiliki koneksi internet.
+   - Perubahan status untuk menampilkan/menyembunyikan halaman landing akan terjadi di callback onTimeout dan karena sebelum memanggil onTimeout kita perlu memuat sesuatu menggunakan coroutine, perubahan status harus terjadi dalam konteks coroutine.
+   - Untuk memanggil fungsi penangguhan secara aman dari dalam composable, gunakan `LaunchedEffect` API, yang memicu efek samping cakupan coroutine dalam Compose.
+   - Saat memasuki Komposisi, `LaunchedEffect` akan meluncurkan coroutine dengan blok kode yang diteruskan sebagai parameter. Coroutine akan dibatalkan jika `LaunchedEffect` keluar dari komposisi.
+   - `rememberUpdateState` digunakan jika lambda yang berumur panjang atau ekspresi objek mereferensikan parameter atau nilai yang dihitung selama komposisi
+   - `rememberUpdateStete` umum digunakan saat bekerja dengan `LaunchedEffect`
+
+3. RememberCoroutineScope
+   - Beberapa API Compose merupakan suspend function. Salah satunya adalah navigasi drawer
+   - Selain dapat menjalankan fungsi asinkron, suspend function juga membantu menampilkan konsep yang terjadi dari waktu ke waktu
+   - Membuka navigasi drawer memerlukan waktu, gerakan dan animasi potensial dan hal ini sempurna dengan suspend function yang akan menagguhkan eksekusi coroutine tempatnya dipanggil hingga selesai dan melanjutkan eksekusi
+   - `scaffoldState.drawerState.open()` harus dipanggil dalam coroutine
+   - `rememberCoroutineScope` akan menampilkan `CoroutineScope` yang terikat ke titik dalam komposisi yang memanggilnya
+   - Akan otomatis dibatalkan setelah keluar dari komposisi
+   - `rememberCoroutineScope` dapat dimulai saat tidak berada di komposisi
+   - Penggunaan `LaunchedEffect` dalam kasus ini tidak mungkin karena pelu memicu panggilan untuk membuat coroutine dalam callback biasa yang berada di luar komposisi
+   - `LaunchedEffect` menjamin bahwa efek samping akan dieksekusi saat panggilan ke composable tersebut membuatnya masuk ke komposisi
+   - Jika menggunakan `rememberCoroutineScope` dan `scope.launch` di `LandingScreen`, coroutine akan dieksekusi setiap kali `LandingScreen` dipanggil oleh Compose terlepas dari apakah panggilan tersebut membuatnya masuk ke komposisi atau tidak.
+   - Oleh karena itu, akan menyia-nyiakan resource dan tidak akan mengeksekusi efek samping ini di lingkungan yang terkontrol
+
+4. Holder State
+   - Dengan membuat holder state yang bertanggung jawab atas status internal composable membuat pusat semua perubahan status di satu tempat
+   - Dengan ini logika terkait dikelompokkan bersama dalam satu class
+   - Holder State harus selalu diingat untuk menjaganya tetap dalam komposisi dan tidak membuat yang baru setiap saat
+   - `remember` akan berubah jika terjadi pembuatan ulang aktivitas
+   - `rememberSaveable` menyimpan state saat pembuatan ulang aktivitas
+   - `Saver` menjelaskan cara objek dapat dikonversi menjadi sesuatu yang `Saveable`
+   - Implementasi `Saver` menggunakan fungsi `save` dan `restore`
+   - API Compose menyediakan `listSaver` atau `mapSaver` daripada membua implementasi kustom `Saver`
+   - `snapshotFlow` digunakan untuk mengonversi objek `State<T>` Compose ke Flow
+   - Ketika status yang dibaca di dalam `snapshotFlow` berubah, Flow akan memunculkan nilai baru ke kolektor
+
+5. DisposableEffect
+   - `LifecycleEventObserver` digunakan untuk memproses peristiwa siklus proses
+   - `DisposableEffect` efek keluar dari komposisi sehingga kita dapat mengeksekusi beberapa kode pembersihan
+
+6. ProduceState
+   - `produceState` memungkinkan mengonversi status non-Compose ke State Compose
+   - Hal ini akan meluncurkan coroutine yang tercakup dalam komposisi yang dapat mendorong nilai menjadi `State` yang ditampilkan dengan properti `value`
+   - `produceState` juga menggunakan kunci untuk membatalkan dan memulai ulang komputasi
+
+7. derivedStateOf
+   - Gunakan `derivedStateOf` ketika menginginkan`State` Compose yang berasal dari `State` lain
+   - `derivedStateOf` dieksekusi setiap kali status internal berubah, tetapi fungsi composable hanya merekomposisi saat hasil kalkulasi berbeda dengan yang terakhir
+   - Hal ini meminimalkan frekuensi fungsi membaca rekomposisi didalamnya
