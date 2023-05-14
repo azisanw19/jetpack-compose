@@ -298,3 +298,51 @@
    - Gunakan `derivedStateOf` ketika menginginkan`State` Compose yang berasal dari `State` lain
    - `derivedStateOf` dieksekusi setiap kali status internal berubah, tetapi fungsi composable hanya merekomposisi saat hasil kalkulasi berbeda dengan yang terakhir
    - Hal ini meminimalkan frekuensi fungsi membaca rekomposisi didalamnya
+
+## Navigasi Jetpack Compose
+
+1. Migrasi ke navigasi Compose
+   - untuk bermigrasi menggunakan langkah:
+     - Menambahkan [depedensi navigasi Compose](https://mvnrepository.com/artifact/androidx.navigation/navigation-compose)
+     - Menyiapkan `NavController`
+     - Menambahkan `NavHost` dan membuat grafik navigasi
+     - Menyiapkan route untuk menavigasi di antara tujuan aplikasi yang berbeda
+     - Mengganti mekanisme navigasi saat ini dengan Navigasi Compose
+   - `NavController` adalah komponen pusat saat menggunakan navigasi di Compose
+   - Fungsi ini akan melacak entri composable data sebelumnya, memindahkan stack ke depan, memungkinkan manipulasi data sebelumnya, dan menavigasi di antara status tujuan
+   - `NavController` diperoleh dengan memanggil fungsi `rememberNavController()`
+   - `NavController` harus selalu membuat dan menempatkan pada tingkat atas dalam hierarki composable, biasanya dalam composable `App`
+   - Ketika menggunakan navigasi dalam Compose, setiap tujuan composable di grafik navigasi akan dikaitkan dengan [route](https://developer.android.com/jetpack/compose/navigation?hl=id#create-navhost)
+   - route direpresentasikan sebagai String yang menentukan jalur ke composable dan memandu `navController` untuk muncul di tempat yang tepat
+   - route dapat dianggal sebagai deep link implisit
+   - Setiap tujuan harus memiliki route yang unik
+   - Untuk melakukannya dapat menggunakan properti `route`
+   - Tiga bagian utama Navigasi adalah `NavController`, `NavGraph`, dan `NavHost`
+   - `NavController` selalu dikaitkan dengan satu composable `NavHost`
+   - `NavHost` berfungsi sebagai penampung dan bertanggung jawab untuk menampilkan tujuan grafik saat ini.
+   - `NavGraph` akan memetakan tujuan composable yang akan dinavigasi
+   - `navController.navigate(route)` digunakan untuk berpindah navigasi
+   - untuk memastikan terdapat satu salinan tujuan dapat menggunakan `launchSingleTop = true`
+   - `NavOptionsBuilder` digunakan untuk mengontrol dan menyesuaikan perilaku navigasi lebih lanjut
+   - `popUpTo(startDestination) { saveState = true }` muncul ke tujuan awal grafik untuk menghindari penumpukan tujuan yang besar pada data sebelumnya saat memilih tab
+   - `restoreState = true` menentukan apakah tindakan navigasi ini harus memulihkan status yang sebelumnya disimpan oleh atribut `PopUpToBuilder.saveState` atau `popUpToSaveState`. Jika tidak ada status yang sebelumnya telah disimpan dengan ID tujuan yang dituju, hal ini tidak akan berpengaruh
+   - Mengetuk kembali tab yang sama akan mempertahankan data dan status pengguna sebelumnya di layar tanpa memuat ulang lagi
+   - Dokumentasi [Mendukung beberapa data sebelumnya](https://developer.android.com/guide/navigation/multi-back-stacks?hl=id)
+   - Mempertahankan `navController` di tingkat teratas hierarki navigasi dan hoisting ke tingkat composable `App` akan memudahkan pratinjau, penggunaan kembali, dan pengujian composable secara terpisah, tanpa harus bergantung pada instance `navController` aktual atau tiruan
+   - Meneruskan callback akan memungkinkan perubahan cepat pada peristiwa klik
+
+2. Navigasi dengan Argumen
+   - Argumen adalah alat yang sangat canggih dan dapat membuat pemilihan route navigasi dinamis dengan meneruskan satu atau beberapa argumen ke suatu route
+   - Agar kode lebih aman dan menangani kasus ekstrem ketika meneruskan argument, dapat juga menetapkan nilai default ke argumen dan menentukan jenisnya secara eksplisit 
+   - Pada Navigasi Compose, setiap fungsi composable `NavHost` memiliki akses ke `NavBackStackEntry`, class yang menyimpan informasi tentang route saat ini dan meneruskan argumen entri di data sebelumnya
+   - `NavBackStackEntry` dapat digunakan untuk mendapatkan daftar `arguments` yang diperlukan, lalu menelusuri dan mengambil argumen yang tepat yang diperlukan untuk meneruskannya lebih jauh ke layar composable
+   - Dapat memberikan nilai default untuk argumen, sebagai placeholder, jika nilai belum disediakan dan nilai ini dapat membuat kode lebih aman dan mencakup kasus ekstrem
+
+3. Mengaktifkan dukungan Deep Link
+   - Selain menambahkan argume, Anda juga dapat menambahkan [deep link](https://developer.android.com/jetpack/compose/navigation?hl=id#deeplinks) untuk mengaitkan URL, tindaka, dan/atau mime tertentu dengan composable
+   - Deep link adalah link yang mengarahkan langsung ke tujuan tertentu dalam aplikasi
+   - Navigation Compose mendukung [deep link implisit](https://developer.android.com/guide/navigation/navigation-deep-link?hl=id#implicit)
+   - Misalnya saat pengguna mengklik link - Android akan dapat membuka aplikasi ke tujuan yang sesuai
+   - Mengekspos deep link ke aplikasi eksternal tidak diaktifkan secara default, oleh karena itu harus menambahkan `<intent-filter>` ke file `manifest.xml`
+
+4. Navigation Test
