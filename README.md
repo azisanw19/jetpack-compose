@@ -346,3 +346,21 @@
    - Mengekspos deep link ke aplikasi eksternal tidak diaktifkan secara default, oleh karena itu harus menambahkan `<intent-filter>` ke file `manifest.xml`
 
 4. Navigation Test
+
+## Testing Jetpack Compose
+
+1. Testing UI Sederhana
+   - `createComposeRule` menggunakan pengujian compose rule
+   - Contoh pengujian compose
+```kotlin
+
+@get:Rule
+val composeTestRule = createComposeRule()
+
+@Test
+fun myTest() {
+   composeTestRule.setContent {
+      Text("You can set any Compose content!")
+   }
+}
+```
