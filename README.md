@@ -366,3 +366,8 @@ fun myTest() {
 ```
 
 ## Aksesibilitas
+
+## Implementation Androids apps for all Screen
+   - A compact screen size < 600 dp width digunakan pada kebanyakan smarthphone dengan mode potrait
+   - Medium width 600 dp sampai 840 dp digunakan pada tablet
+   - Expanded > 840 dp digunakan pada tablet dan desktop
